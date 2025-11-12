@@ -1,0 +1,11 @@
+"""
+Markup app configuration.
+"""
+
+from django.apps import AppConfig
+
+
+class MarkupConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'apps.markup'
+    verbose_name = 'Markup'
