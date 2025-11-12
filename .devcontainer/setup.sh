@@ -49,40 +49,10 @@ npm install
 
 echo "✅ Frontend setup complete!"
 
-# Create start script
-echo "📝 Creating start script..."
-cat > /workspace/start.sh << 'SCRIPT'
-#!/bin/bash
-
-# Start backend
-echo "🚀 Starting Django backend on port 8000..."
-cd /workspace/backend
-source venv/bin/activate
-python manage.py runserver 0.0.0.0:8000 &
-
-# Start frontend
-echo "🚀 Starting Next.js frontend on port 3000..."
-cd /workspace/frontend
-npm run dev &
-
-echo ""
-echo "✅ Herald is running!"
-echo ""
-echo "📍 Frontend: http://localhost:3000"
-echo "📍 Backend API: http://localhost:8000/api/v1/"
-echo "📍 API Docs: http://localhost:8000/api/docs/"
-echo "📍 Admin: http://localhost:8000/admin/"
-echo ""
-echo "To create a superuser, run:"
-echo "  cd backend && source venv/bin/activate && python manage.py createsuperuser"
-echo ""
-echo "Press Ctrl+C to stop all services"
-echo ""
-
-wait
-SCRIPT
-
+# Make convenience scripts executable
+echo "📝 Making convenience scripts executable..."
 chmod +x /workspace/start.sh
+chmod +x /workspace/stop.sh
 
 # Return to workspace root
 cd /workspace
