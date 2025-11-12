@@ -1,0 +1,26 @@
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+      },
+      {
+        protocol: 'http',
+        hostname: 'minio',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.s3.amazonaws.com',
+      },
+    ],
+  },
+  env: {
+    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api/v1',
+    NEXT_PUBLIC_PALEOGRAPHY_API_URL: process.env.NEXT_PUBLIC_PALEOGRAPHY_API_URL || 'http://localhost:8080',
+  },
+}
+
+module.exports = nextConfig

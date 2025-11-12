@@ -1,0 +1,25 @@
+-r base.txt
+
+# Development tools
+black>=23.12,<24.0
+isort>=5.13,<6.0
+flake8>=7.0,<8.0
+mypy>=1.8,<2.0
+
+# Django development
+django-debug-toolbar>=4.2,<5.0
+django-extensions>=3.2,<4.0
+
+# Shell
+ipython>=8.20,<9.0
+
+# Testing
+pytest>=7.4,<8.0
+pytest-django>=4.7,<5.0
+pytest-cov>=4.1,<5.0
+factory-boy>=3.3,<4.0
+faker>=22.0,<23.0
+
+# Type stubs
+django-stubs>=4.2,<5.0
+djangorestframework-stubs>=3.14,<4.0
