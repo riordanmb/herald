@@ -1,5 +1,7 @@
 # Herald
 
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/riordanmb/herald?quickstart=1)
+
 A comprehensive digital platform for heraldic manuscript research, enabling scholars to catalog, annotate, compare, and analyze medieval heraldic manuscripts.
 
 ## Overview
@@ -41,14 +43,28 @@ herald/
 
 ## Quick Start
 
-### Prerequisites
+### Option 1: GitHub Codespaces (Recommended - No Installation Required!)
 
+Click the badge above or [open in Codespaces](https://codespaces.new/riordanmb/herald?quickstart=1) to get a fully configured development environment in your browser.
+
+**Once your Codespace opens (2-3 minutes):**
+
+1. Wait for the setup to complete (automatic)
+2. Run `./start.sh` to start both backend and frontend
+3. Click "Open in Browser" when prompted for port 3000
+4. Create a superuser: `cd backend && source venv/bin/activate && python manage.py createsuperuser`
+
+**That's it!** See [.devcontainer/README.md](.devcontainer/README.md) for more details.
+
+### Option 2: Local Development with Docker
+
+**Prerequisites:**
 - Docker and Docker Compose
 - Node.js 18+ (for local frontend development)
 - Python 3.11+ (for local backend development)
 - Git
 
-### Development Setup
+**Setup:**
 
 1. **Clone the repository**
    ```bash
@@ -260,6 +276,8 @@ Special thanks to:
 
 ---
 
-**Status**: In Planning Phase
+**Status**: Phase 1 Complete - Ready to Test in Codespaces!
 **Version**: 0.1.0-alpha
 **Last Updated**: 2025-11-12
+
+🚀 **Try it now:** [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/riordanmb/herald?quickstart=1)
