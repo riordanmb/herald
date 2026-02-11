@@ -40,6 +40,8 @@ class SurrogateSerializer(serializers.ModelSerializer):
 
 class SurrogateCreateSerializer(serializers.ModelSerializer):
     """Serializer for creating surrogates with file upload."""
+    
+    image = serializers.ImageField(write_only=True, required=True)
 
     class Meta:
         model = Surrogate
@@ -48,6 +50,7 @@ class SurrogateCreateSerializer(serializers.ModelSerializer):
             'surrogate_type',
             'folio_number',
             'sequence_number',
+            'image',
             'dpi',
             'capture_date',
             'photographer',
@@ -55,6 +58,18 @@ class SurrogateCreateSerializer(serializers.ModelSerializer):
             'license',
             'notes',
         ]
+    
+    def validate_image(self, value):
+        """Validate uploaded image."""
+        # Check file size (max 50MB)
+        if value.size > 50 * 1024 * 1024:
+            raise serializers.ValidationError("Image file too large. Maximum size is 50MB.")
+        
+        # Check file type
+        if not value.content_type.startswith('image/'):
+            raise serializers.ValidationError("File must be an image.")
+        
+        return value
 
 
 class ManuscriptListSerializer(serializers.ModelSerializer):

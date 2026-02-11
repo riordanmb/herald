@@ -32,7 +32,8 @@ urlpatterns = [
     ])),
 
     # Authentication
-    path('api/auth/', include('rest_framework.urls')),
+    path('api/auth/', include('apps.authentication.urls')),
+    path('api/auth/', include('rest_framework.urls')),  # Browsable API login
 ]
 
 # Serve media files in development

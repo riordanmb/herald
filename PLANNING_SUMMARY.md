@@ -11,12 +11,14 @@ Herald is a comprehensive digital platform for heraldic manuscript research, des
 ## Core Requirements Met
 
 ### ✅ Manuscript Management
+
 - Multi-surrogate support (originals, prints, photos, derivatives)
 - Rich metadata capture
 - Flexible organization by repository, collection, date
 - Provenance tracking
 
 ### ✅ Heraldic Features
+
 - Arms markup according to heraldic laws
 - Blazon creation and parsing
 - Tincture and charge libraries
@@ -25,12 +27,14 @@ Herald is a comprehensive digital platform for heraldic manuscript research, des
 - Advanced heraldic search
 
 ### ✅ Recession Tracking
+
 - Manuscript relationship modeling
 - Stemma/tree visualization
 - Evidence documentation
 - Confidence levels
 
 ### ✅ Transcription Support
+
 - Region-based transcription
 - Multiple transcription types (diplomatic, normalized)
 - Special character support
@@ -38,6 +42,7 @@ Herald is a comprehensive digital platform for heraldic manuscript research, des
 - Full-text search
 
 ### ✅ Paleography Analysis
+
 - Scribal hand similarity detection using DINOv2
 - Visual embedding computation
 - Clustering and comparison
@@ -45,6 +50,7 @@ Herald is a comprehensive digital platform for heraldic manuscript research, des
 - Complete FastAPI microservice specification provided
 
 ### ✅ User Experience
+
 - Elegant, scholarly interface
 - Rich documentation
 - Guided workflows
@@ -55,6 +61,7 @@ Herald is a comprehensive digital platform for heraldic manuscript research, des
 ### Technology Stack
 
 **Frontend:**
+
 - Next.js 14 (App Router) + TypeScript
 - React 18 + Tailwind CSS
 - OpenSeadragon (image viewer)
@@ -62,18 +69,21 @@ Herald is a comprehensive digital platform for heraldic manuscript research, des
 - React Query + Zustand
 
 **Backend:**
+
 - Django 5 + Django REST Framework
 - PostgreSQL 16
 - Redis 7
 - Celery (async tasks)
 
 **Paleography:**
+
 - FastAPI 0.115+
 - PyTorch 2.4 + DINOv2
 - scikit-learn (clustering)
 - OpenCV (preprocessing)
 
 **Infrastructure:**
+
 - Docker + Docker Compose
 - MinIO (object storage)
 - Nginx (reverse proxy)
@@ -109,27 +119,32 @@ Herald is a comprehensive digital platform for heraldic manuscript research, des
 ### Key Entities
 
 1. **Manuscript** - Core manuscript metadata
+
    - Physical description, dating, provenance
    - Support for uncertain dates (ranges)
    - Bibliography and references
 
 2. **Surrogate** - Images and representations
+
    - Multiple surrogates per folio
    - IIIF manifest support
    - Technical metadata (DPI, format, size)
 
 3. **Arms** - Heraldic coats of arms
+
    - Blazon (textual description)
    - Parsed heraldic structure
    - Visual markup (coordinates)
    - Similarity hashing
 
 4. **ManuscriptRelationship** - Recession tracking
+
    - Typed relationships (copy, derived, exemplar)
    - Evidence documentation
    - Confidence levels
 
 5. **Transcription** - Text content
+
    - Region-based (coordinates on image)
    - Multiple transcription types
    - Full-text search enabled
@@ -142,17 +157,25 @@ Herald is a comprehensive digital platform for heraldic manuscript research, des
 ## Implementation Roadmap
 
 ### Phase 1: Foundation (Weeks 1-4)
+
 **Deliverables:**
+
 - ✅ Complete planning documentation
-- Infrastructure setup (Docker Compose)
-- Basic Django + Next.js projects
-- PostgreSQL + Redis + MinIO
-- Manuscript CRUD operations
-- User authentication
-- Basic image upload
+- ✅ Infrastructure setup (Docker Compose)
+- ✅ Basic Django + Next.js projects
+- ✅ PostgreSQL + Redis + MinIO
+- ✅ Manuscript CRUD operations
+- ✅ User authentication (JWT)
+- ✅ Basic image upload (MinIO integration)
+- ✅ Database migrations
+- ✅ Admin interface
+- ✅ Frontend authentication pages
+- ✅ Frontend manuscript pages
 
 ### Phase 2: Viewing & Markup (Weeks 5-8)
+
 **Deliverables:**
+
 - OpenSeadragon image viewer
 - Folio navigation
 - Annotation system (Fabric.js)
@@ -160,7 +183,9 @@ Herald is a comprehensive digital platform for heraldic manuscript research, des
 - Responsive UI
 
 ### Phase 3: Heraldry Core (Weeks 9-12)
+
 **Deliverables:**
+
 - Heraldic data models
 - Shield markup tools
 - Blazon editor
@@ -168,7 +193,9 @@ Herald is a comprehensive digital platform for heraldic manuscript research, des
 - Rule validation
 
 ### Phase 4: Search & Comparison (Weeks 13-16)
+
 **Deliverables:**
+
 - Full-text search (PostgreSQL)
 - Heraldic search
 - Arms comparison UI
@@ -176,21 +203,27 @@ Herald is a comprehensive digital platform for heraldic manuscript research, des
 - Export functionality
 
 ### Phase 5: Recession (Weeks 17-20)
+
 **Deliverables:**
+
 - Relationship models
 - Stemma visualization (D3.js)
 - Interactive tree builder
 - Evidence linking
 
 ### Phase 6: Transcription (Weeks 21-23)
+
 **Deliverables:**
+
 - Transcription editor
 - Special character support
 - Region selection
 - Search integration
 
 ### Phase 7: Paleography (Weeks 24-28)
+
 **Deliverables:**
+
 - FastAPI service implementation
 - DINOv2 integration
 - Clustering algorithms
@@ -198,7 +231,9 @@ Herald is a comprehensive digital platform for heraldic manuscript research, des
 - Integration with main app
 
 ### Phase 8: Polish (Weeks 29-32)
+
 **Deliverables:**
+
 - Performance optimization
 - Comprehensive testing
 - Complete documentation
@@ -208,18 +243,22 @@ Herald is a comprehensive digital platform for heraldic manuscript research, des
 ## Key Design Decisions
 
 ### 1. Microservices Architecture
+
 **Decision:** Separate paleography service from main Django API
 
 **Rationale:**
+
 - Different technology requirements (PyTorch vs Django)
 - Independent scaling
 - Specialized team can work on ML service
 - Easier to upgrade/replace models
 
 ### 2. PostgreSQL for Everything
+
 **Decision:** Use PostgreSQL as primary database for all services
 
 **Rationale:**
+
 - Mature, reliable
 - Excellent JSON support (for flexible metadata)
 - Full-text search built-in
@@ -227,9 +266,11 @@ Herald is a comprehensive digital platform for heraldic manuscript research, des
 - Reduces infrastructure complexity
 
 ### 3. Next.js App Router
+
 **Decision:** Use Next.js 14 with App Router (not Pages Router)
 
 **Rationale:**
+
 - Modern React patterns (Server Components)
 - Better performance
 - Improved SEO
@@ -237,18 +278,22 @@ Herald is a comprehensive digital platform for heraldic manuscript research, des
 - Future-proof
 
 ### 4. IIIF Support
+
 **Decision:** Build IIIF manifest support from the start
 
 **Rationale:**
+
 - Interoperability with other digital libraries
 - Standard protocol for image delivery
 - Enables sharing with broader community
 - Future-proofs the platform
 
 ### 5. Redis for Embeddings
+
 **Decision:** Cache paleography embeddings in Redis, not just database
 
 **Rationale:**
+
 - Fast access for similarity calculations
 - Reduces database load
 - Easy to scale
@@ -258,26 +303,27 @@ Herald is a comprehensive digital platform for heraldic manuscript research, des
 
 ### Technical Risks
 
-| Risk | Likelihood | Impact | Mitigation |
-|------|------------|--------|------------|
-| PyTorch model size/performance | Medium | High | Implement ONNX export, batch processing, GPU support |
-| Large image handling | High | Medium | Use IIIF tiles, progressive loading, CDN |
-| Complex UI interactions | Medium | Medium | Incremental development, user testing |
-| Database performance at scale | Low | High | Proper indexing, materialized views, query optimization |
-| MinIO reliability | Low | Medium | Regular backups, consider S3 for production |
+| Risk                           | Likelihood | Impact | Mitigation                                              |
+| ------------------------------ | ---------- | ------ | ------------------------------------------------------- |
+| PyTorch model size/performance | Medium     | High   | Implement ONNX export, batch processing, GPU support    |
+| Large image handling           | High       | Medium | Use IIIF tiles, progressive loading, CDN                |
+| Complex UI interactions        | Medium     | Medium | Incremental development, user testing                   |
+| Database performance at scale  | Low        | High   | Proper indexing, materialized views, query optimization |
+| MinIO reliability              | Low        | Medium | Regular backups, consider S3 for production             |
 
 ### Project Risks
 
-| Risk | Likelihood | Impact | Mitigation |
-|------|------------|--------|------------|
-| Scope creep | Medium | High | Phased approach, clear requirements per phase |
-| Resource availability | Medium | Medium | Modular design allows distributed development |
-| User adoption | Low | High | Early user testing, excellent documentation |
-| Technology changes | Low | Medium | Use stable, mature technologies |
+| Risk                  | Likelihood | Impact | Mitigation                                    |
+| --------------------- | ---------- | ------ | --------------------------------------------- |
+| Scope creep           | Medium     | High   | Phased approach, clear requirements per phase |
+| Resource availability | Medium     | Medium | Modular design allows distributed development |
+| User adoption         | Low        | High   | Early user testing, excellent documentation   |
+| Technology changes    | Low        | Medium | Use stable, mature technologies               |
 
 ## Success Metrics
 
 ### Phase 1 Success Criteria
+
 - [ ] Docker Compose environment runs without errors
 - [ ] Can create, view, update, delete manuscripts
 - [ ] Can upload images to MinIO
@@ -285,6 +331,7 @@ Herald is a comprehensive digital platform for heraldic manuscript research, des
 - [ ] API returns correct responses
 
 ### Overall Project Success
+
 - Platform supports all specified features
 - Response time < 2s for all pages
 - Test coverage > 80%
@@ -304,12 +351,14 @@ Herald is a comprehensive digital platform for heraldic manuscript research, des
 ## Next Steps
 
 ### Immediate (This Week)
+
 1. Review planning documents with stakeholders
 2. Set up project management (GitHub Projects/Issues)
 3. Assign Phase 1 tasks
 4. Schedule kickoff meeting
 
 ### Phase 1 Kickoff (Week 1)
+
 1. Run setup script
 2. Initialize Django project structure
 3. Initialize Next.js project structure
@@ -318,6 +367,7 @@ Herald is a comprehensive digital platform for heraldic manuscript research, des
 6. Implement basic manuscript CRUD
 
 ### Developer Onboarding
+
 1. Review all planning documents
 2. Complete GETTING_STARTED.md setup
 3. Review ARCHITECTURE.md
@@ -327,21 +377,25 @@ Herald is a comprehensive digital platform for heraldic manuscript research, des
 ## Open Questions
 
 1. **Deployment Environment**
+
    - Self-hosted vs cloud?
    - Kubernetes or Docker Compose for production?
    - Budget for cloud services?
 
 2. **User Authentication**
+
    - Institution SSO required?
    - Public access to view, login to edit?
    - User roles and permissions model?
 
 3. **Data Migration**
+
    - Existing data to import?
    - Import format/process?
    - Data validation requirements?
 
 4. **Heraldic Ontology**
+
    - Existing heraldic taxonomy to follow?
    - Custom charge classifications?
    - Multi-language support priorities?
@@ -354,6 +408,7 @@ Herald is a comprehensive digital platform for heraldic manuscript research, des
 ## Resources Required
 
 ### Development Team
+
 - **Backend Developer** - Django, PostgreSQL
 - **Frontend Developer** - React, Next.js, TypeScript
 - **ML Engineer** - PyTorch, computer vision (for paleography)
@@ -361,7 +416,9 @@ Herald is a comprehensive digital platform for heraldic manuscript research, des
 - **Designer** - UI/UX (can be part-time)
 
 ### Infrastructure
+
 - **Development**
+
   - Developer machines (can run Docker)
   - Shared development server (optional)
 
@@ -371,6 +428,7 @@ Herald is a comprehensive digital platform for heraldic manuscript research, des
   - GPU for paleography (optional, improves performance)
 
 ### External Services
+
 - Domain name and SSL certificates
 - Email service (transactional emails)
 - Backup storage

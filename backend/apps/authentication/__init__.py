@@ -1,0 +1,4 @@
+"""
+Authentication app for Herald.
+"""
+

@@ -18,6 +18,7 @@ from .serializers import (
     SurrogateSerializer,
     SurrogateCreateSerializer,
 )
+from .storage import get_storage
 
 
 class ManuscriptViewSet(viewsets.ModelViewSet):
@@ -164,3 +165,56 @@ class SurrogateViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(manuscript_id=manuscript_id)
 
         return queryset
+    
+    def create(self, request, *args, **kwargs):
+        """Create surrogate with image upload."""
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        
+        # Get image file
+        image_file = serializer.validated_data.pop('image')
+        manuscript = serializer.validated_data['manuscript']
+        folio_number = serializer.validated_data['folio_number']
+        sequence_number = serializer.validated_data.get('sequence_number', 1)
+        
+        # Upload to MinIO
+        storage = get_storage()
+        upload_result = storage.upload_image(
+            image_file,
+            str(manuscript.id),
+            folio_number,
+            sequence_number
+        )
+        
+        # Create surrogate with uploaded URLs
+        surrogate = Surrogate.objects.create(
+            **serializer.validated_data,
+            image_url=upload_result['image_url'],
+            thumbnail_url=upload_result['thumbnail_url'],
+            width=upload_result['width'],
+            height=upload_result['height'],
+            file_size=upload_result['file_size'],
+            file_format='JPEG',
+        )
+        
+        response_serializer = SurrogateSerializer(surrogate)
+        headers = self.get_success_headers(response_serializer.data)
+        return Response(
+            response_serializer.data,
+            status=status.HTTP_201_CREATED,
+            headers=headers
+        )
+    
+    def destroy(self, request, *args, **kwargs):
+        """Delete surrogate and associated images."""
+        surrogate = self.get_object()
+        manuscript_id = str(surrogate.manuscript.id)
+        folio_number = surrogate.folio_number
+        sequence_number = surrogate.sequence_number
+        
+        # Delete from storage
+        storage = get_storage()
+        storage.delete_image(manuscript_id, folio_number, sequence_number)
+        
+        # Delete surrogate
+        return super().destroy(request, *args, **kwargs)

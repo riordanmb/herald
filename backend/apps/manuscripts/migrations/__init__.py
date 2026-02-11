@@ -1,0 +1,2 @@
+# Migrations for manuscripts app
+

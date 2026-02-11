@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24">
@@ -20,6 +22,20 @@ export default function Home() {
               <li>🔍 Advanced heraldic search</li>
               <li>🤖 ML-powered scribal hand similarity analysis</li>
             </ul>
+            <div className="mt-8 flex gap-4 justify-center">
+              <Link
+                href="/manuscripts"
+                className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                Browse Manuscripts
+              </Link>
+              <Link
+                href="/login"
+                className="px-6 py-3 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition-colors"
+              >
+                Sign In
+              </Link>
+            </div>
             <div className="mt-8 p-4 bg-blue-50 border border-blue-200 rounded-lg">
               <p className="text-sm text-blue-800">
                 <strong>Status:</strong> Phase 1 - Foundation <br />
